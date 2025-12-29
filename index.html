@@ -31,8 +31,110 @@
 
 
 
-<!-- 
+
+
+
+
 <script>
+
+
+//   const companies = document.querySelectorAll(".company");
+//   const experiences = document.querySelectorAll(".exp");
+
+//   let index = 0;
+
+//   window.addEventListener("wheel", (e) => {
+//     if (e.deltaY > 0 && index < experiences.length - 1) {
+//       index++;
+//     } else if (e.deltaY < 0 && index > 0) {
+//       index--;
+//     }
+
+//     companies.forEach(c => c.classList.remove("active"));
+//     experiences.forEach(e => e.classList.remove("active"));
+
+//     companies[index].classList.add("active");
+//     experiences[index].classList.add("active");
+//   });
+
+// });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const section = document.getElementById("experience-section");
+//   const companies = document.querySelectorAll(".company");
+//   const experiences = document.querySelectorAll(".exp");
+
+//   let index = 0;
+//   let scrolling = false;
+//   let sectionActive = false;
+
+//   companies.forEach((c, i) => c.classList.toggle("active", i === index));
+//   experiences.forEach((e, i) => e.classList.toggle("active", i === index));
+
+//   // Activate only when section is visible
+//   const observer = new IntersectionObserver(
+//     ([entry]) => sectionActive = entry.isIntersecting,
+//     { threshold: 0.5 }
+//   );
+//   observer.observe(section);
+
+//   window.addEventListener("wheel", (e) => {
+//     if (!sectionActive || scrolling) return;
+
+//     scrolling = true;
+//     setTimeout(() => scrolling = false, 400);
+
+//     if (e.deltaY > 0 && index < experiences.length - 1) index++;
+//     else if (e.deltaY < 0 && index > 0) index--;
+
+//     companies.forEach((c, i) => c.classList.toggle("active", i === index));
+//     experiences.forEach((e, i) => e.classList.toggle("active", i === index));
+//   });
+// });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const section = document.getElementById("experience-section");
+  const companies = document.querySelectorAll(".company");
+  const experiences = document.querySelectorAll(".exp");
+
+  let index = 0;
+  let scrolling = false;
+  let enableScroll = false;
+
+  // Set first active (Incede)
+  companies.forEach((c, i) => c.classList.toggle("active", i === index));
+  experiences.forEach((e, i) => e.classList.toggle("active", i === index));
+
+  // Enable scroll only when mouse enters section
+  section.addEventListener("mouseenter", () => {
+    enableScroll = true;
+  });
+
+  // Disable scroll when mouse leaves section
+  section.addEventListener("mouseleave", () => {
+    enableScroll = false;
+  });
+
+  window.addEventListener("wheel", (e) => {
+    if (!enableScroll || scrolling) return;
+
+    scrolling = true;
+    setTimeout(() => scrolling = false, 400);
+
+    if (e.deltaY > 0 && index < experiences.length - 1) {
+      index++;
+    } else if (e.deltaY < 0 && index > 0) {
+      index--;
+    }
+
+    companies.forEach((c, i) => c.classList.toggle("active", i === index));
+    experiences.forEach((e, i) => e.classList.toggle("active", i === index));
+  });
+});
+
+
+
 (function () {
   /* -----------------------------------------------------
      GLOBAL CHAT STATE & CUSTOMIZABLE AI CONFIG
@@ -49,7 +151,7 @@
     title: "Software Engineer",
     
     welcomeMessages: [
-      "Hi! 👋 I'm Swetha's smart assistant.\n\nAsk me about **projects**, **skills**, **education**, **certificates**, **contact**, or **cv**!\n\nWhat would you like to explore first? ✨",
+      "Hi! 👋 I'm Swetha's assistant.\n\nAsk me about projects, skills, education, certificates, contact, or cv!\n\nWhat would you like to explore first?",
       "Hey there! 😊 Ready to discover Swetha's amazing work?",
       "Hello! 👋 I'm here to guide you through the portfolio!"
     ],
@@ -69,32 +171,32 @@
       ],
       
       projects: [
-        "💻 **Featured Projects:**\n• Sponsorship Management System (Web)\n• Heart Beat Analyzer (ML App)\n• NBFC Project (Finance Web App)\n• TO DO List & LOMBOK UI\n\nWant to jump to projects?",
+        "💻 Featured Projects:\n• Sponsorship Management System (Web)\n• Heart Beat Analyzer (ML App)\n• NBFC Project (Finance Web App)\n• TO DO List & LOMBOK UI\n\nWant to jump to projects?",
         "Check out Swetha's amazing projects! 💻\n• Heart Beat Analyzer using MFCC\n• Professional NBFC web solutions\n• Interactive TO DO app\n\nReady to scroll to projects section?"
       ],
       
       skills: [
-        "⭐ **Swetha's Skills:**\n• HTML/CSS/JS: 98%\n• Python: 94%\n• Database: 90%\n• Design: 100%\n\nTools: Figma, Adobe Suite, Coral Draw\n\nShall I take you to skills section?",
+        "⭐ Swetha's Skills:\n• HTML/CSS/JS: 98%\n• Python: 94%\n• Database: 90%\n• Design: 100%\n\nTools: Figma, Adobe Suite, Coral Draw\n\nShall I take you to skills section?",
         "Swetha excels in:\n✅ Full-stack web development\n✅ Python & ML projects\n✅ UI/UX Design\n✅ Database management\n\nCheck out the skills section!"
       ],
       
       education: [
-        "🎓 **Education:**\n• B.Tech IT - CUSAT (7.79 CGPA)\n• Diploma Computer Engg (7.89 CGPA)\n• +2 Computer Science\n\nSolid technical foundation! 📚",
+        "🎓 Education:\n• B.Tech IT - CUSAT (7.79 CGPA)\n• Diploma Computer Engg (7.89 CGPA)\n• +2 Computer Science\n\nSolid technical foundation! 📚",
         "Academic Journey:\n🏆 B.Tech Information Technology\n🏆 Diploma in Computer Engineering\n🏆 Strong programming fundamentals"
       ],
       
       certificates: [
-        "🏅 **Certifications:**\n• Machine Learning (Coursera)\n• UI/UX Figma (Udemy)\n• IBM Cloud Computing\n• Python (Kaggle)\n• HTML/CSS/JS (Coursera)\n\nContinuous learning! 🚀",
+        "🏅 Certifications:\n• Machine Learning (Coursera)\n• UI/UX Figma (Udemy)\n• IBM Cloud Computing\n• Python (Kaggle)\n• HTML/CSS/JS (Coursera)\n\nContinuous learning! 🚀",
         "Swetha's Certifications showcase:\n✅ ML Classification\n✅ Professional UI/UX\n✅ Cloud Computing\n✅ Python mastery"
       ],
       
       contact: [
-        "📧 **Get in touch:**\n✉️ swetha2001as@gmail.com\n📱 +91 9400381282\n📍 Thrissur, Kerala\n\nReady to connect?",
+        "📧 Get in touch:\n✉️ swetha2001as@gmail.com\n📱 +91 9400381282\n📍 Thrissur, Kerala\n\nReady to connect?",
         "Contact details:\n💌 Email: swetha2001as@gmail.com\n📞 Phone: +91 9400381282\n📍 Anthikkat House, Thrissur"
       ],
       
       links: [
-        "🔗 **Quick Links:**\n💼 [LinkedIn](https://www.linkedin.com/in/swetha-a-s-47555323b/)\n🐙 [GitHub](https://github.com/Swetha2001aS)\n📄 [Download CV](https://drive.google.com/file/d/1kx5LuSpNdTrBWbBXhlfviEqRTz996hvt/view?usp=sharing)",
+        "🔗 Quick Links:\n💼 [LinkedIn](https://www.linkedin.com/in/swetha-a-s-47555323b/)\n🐙 [GitHub](https://github.com/Swetha2001aS)\n📄 [Download CV](https://drive.google.com/file/d/1kx5LuSpNdTrBWbBXhlfviEqRTz996hvt/view?usp=sharing)",
         "Important links:\n👩‍💼 LinkedIn Profile\n🐱 GitHub Repos\n📜 Full CV Download"
       ]
     }
@@ -346,327 +448,7 @@
     addMessage("bot", window.chatbotConfig.welcomeMessages[Math.floor(Math.random() * window.chatbotConfig.welcomeMessages.length)]);
   }, 1000);
 
-  setTimeout(toggleChat, 4000);
-})();
-</script> -->
-
-
-
-<script>
-(function () {
-  /* -----------------------------------------------------
-     GLOBAL CHAT STATE & CUSTOMIZABLE AI CONFIG
-  ----------------------------------------------------- */
-  window.chatState = { 
-    open: false,
-    isTyping: false,
-    conversationHistory: []
-  };
-
-  // 🎨 CUSTOMIZABLE RESPONSES - Edit these easily!
-  window.chatbotConfig = {
-    name: "Swetha AS",
-    title: "Software Engineer",
-    
-    welcomeMessages: [
-      "Hi! 👋 I'm Swetha's smart assistant.\n\nAsk me about **projects**, **skills**, **education**, **certificates**, **contact**, or **cv**!\n\nWhat would you like to explore first? ✨",
-      "Hey there! 😊 Ready to discover Swetha's amazing work?",
-      "Hello! 👋 I'm here to guide you through the portfolio!"
-    ],
-    
-    fallbackResponses: [
-      "I understand you're looking for something specific! 😊 What can I help with?",
-      "Let me assist you better! What interests you most?",
-      "Happy to help! Tell me more about what you're looking for ✨"
-    ],
-    
-    responses: {
-      greetings: [
-        "Hey there! 😊 How can I help you explore Swetha's portfolio?",
-        "Hi! 👋 Ready to dive into projects, skills, or anything else?",
-        "Hello! ✨ What would you like to know about Swetha?",
-        "Hey! 😄 Ask me about projects, skills, experience, or anything!"
-      ],
-      
-      projects: [
-        "💻 **Featured Projects:**\n• Sponsorship Management System (Web)\n• Heart Beat Analyzer (ML App)\n• NBFC Project (Finance Web App)\n• TO DO List & LOMBOK UI\n\nWant to jump to projects?",
-        "Check out Swetha's amazing projects! 💻\n• Heart Beat Analyzer using MFCC\n• Professional NBFC web solutions\n• Interactive TO DO app\n\nReady to scroll to projects section?"
-      ],
-      
-      skills: [
-        "⭐ **Swetha's Skills:**\n• HTML/CSS/JS: 98%\n• Python: 94%\n• Database: 90%\n• Design: 100%\n\nTools: Figma, Adobe Suite, Coral Draw\n\nShall I take you to skills section?",
-        "Swetha excels in:\n✅ Full-stack web development\n✅ Python & ML projects\n✅ UI/UX Design\n✅ Database management\n\nCheck out the skills section!"
-      ],
-      
-      education: [
-        "🎓 **Education:**\n• B.Tech IT - CUSAT (7.79 CGPA)\n• Diploma Computer Engg (7.89 CGPA)\n• +2 Computer Science\n\nSolid technical foundation! 📚",
-        "Academic Journey:\n🏆 B.Tech Information Technology\n🏆 Diploma in Computer Engineering\n🏆 Strong programming fundamentals"
-      ],
-      
-      certificates: [
-        "🏅 **Certifications:**\n• Machine Learning (Coursera)\n• UI/UX Figma (Udemy)\n• IBM Cloud Computing\n• Python (Kaggle)\n• HTML/CSS/JS (Coursera)\n\nContinuous learning! 🚀",
-        "Swetha's Certifications showcase:\n✅ ML Classification\n✅ Professional UI/UX\n✅ Cloud Computing\n✅ Python mastery"
-      ],
-      
-      contact: [
-        "📧 **Get in touch:**\n✉️ swetha2001as@gmail.com\n📱 +91 9400381282\n📍 Thrissur, Kerala\n\nReady to connect?",
-        "Contact details:\n💌 Email: swetha2001as@gmail.com\n📞 Phone: +91 9400381282\n📍 Anthikkat House, Thrissur"
-      ],
-      
-      links: [
-        "🔗 **Quick Links:**\n💼 [LinkedIn](https://www.linkedin.com/in/swetha-a-s-47555323b/)\n🐙 [GitHub](https://github.com/Swetha2001aS)\n📄 [Download CV](https://drive.google.com/file/d/1kx5LuSpNdTrBWbBXhlfviEqRTz996hvt/view?usp=sharing)",
-        "Important links:\n👩‍💼 LinkedIn Profile\n🐱 GitHub Repos\n📜 Full CV Download"
-      ]
-    }
-  };
-
-  /* -----------------------------------------------------
-     CHAT UI - SAME BEAUTIFUL STYLE
-  ----------------------------------------------------- */
-  const chatToggle = document.createElement("button");
-  chatToggle.id = "chat-toggle";
-  chatToggle.innerHTML = "💬";
-  chatToggle.style.cssText = `
-    position: fixed; bottom: 25px; right: 25px; 
-    width: 65px; height: 65px; border-radius: 50%;
-    background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.25); color: #fff;
-    font-size: 24px; cursor: pointer; z-index: 10001;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-    transition: all .3s ease;
-  `;
-
-  const chatbot = document.createElement("div");
-  chatbot.id = "custom-chatbot";
-  chatbot.style.cssText = `
-    position: fixed; bottom: 105px; right: 25px;
-    width: 380px; height: 540px;
-    background: rgba(0,0,0,0.85); backdrop-filter: blur(25px);
-    border-radius: 20px; border: 1px solid rgba(255,255,255,0.08);
-    display: none; overflow: hidden; z-index: 99999;
-    transform: translateX(420px); transition: .4s ease;
-    box-shadow:
-      0 0 4px rgba(214,52,71,0.45),
-      0 0 8px rgba(214,52,71,0.25);
-  `;
-
-  chatbot.innerHTML = `
-    <div style="
-      background: rgba(0,0,0,0.95); padding: 18px; 
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      text-align: center; position: relative; color: #fff;">
-      <h3 style="margin: 0; font-size: 19px;">${window.chatbotConfig.name}</h3>
-      <p style="margin: 4px 0 0; font-size: 13px; opacity: .8;">
-        ${window.chatbotConfig.title}
-      </p>
-      <button onclick="closeChat()" style="
-        position: absolute; top: 14px; right: 16px; 
-        background: none; border: none; color: #fff;
-        font-size: 22px; cursor: pointer; opacity: .7;">×</button>
-    </div>
-
-    <div id="chat-messages" style="
-      height: 340px; padding: 18px; overflow-y: auto;
-      background: rgba(0,0,0,0.35); color: #fff;">
-    </div>
-
-    <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
-      <div style="display: flex; gap: 8px;">
-        <input id="chat-input" type="text" 
-          placeholder="Ask me anything..." 
-          style="
-            flex: 1; padding: 12px 14px;
-            border-radius: 22px; background: rgba(255,255,255,0.12);
-            color: #fff; border: 1px solid rgba(255,255,255,0.25);
-            outline: none; font-size: 14px;">
-        <button id="chat-send" style="
-          width: 46px; height: 46px; border-radius: 50%;
-          background: rgba(255,255,255,0.25); color: #fff;
-          border: 1px solid rgba(255,255,255,0.3); cursor: pointer;">
-          ➤
-        </button>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(chatbot);
-  document.body.appendChild(chatToggle);
-
-  /* -----------------------------------------------------
-     TOGGLE FUNCTIONS
-  ----------------------------------------------------- */
-  window.toggleChat = function () {
-    const isOpen = chatbot.style.display === "block";
-    chatbot.style.display = isOpen ? "none" : "block";
-    chatbot.style.transform = isOpen ? "translateX(420px)" : "translateX(0)";
-  };
-
-  window.closeChat = function () {
-    chatbot.style.display = "none";
-    chatbot.style.transform = "translateX(420px)";
-  };
-
-  /* -----------------------------------------------------
-     MESSAGE SYSTEM WITH TYPING
-  ----------------------------------------------------- */
-  const messages = () => document.getElementById("chat-messages");
-
-  function addMessage(sender, text, isTyping = false) {
-    const msg = document.createElement("div");
-    msg.style.marginBottom = "15px";
-    msg.style.textAlign = sender === "bot" ? "left" : "right";
-
-    if (isTyping) {
-      msg.innerHTML = `
-        <span style="
-          display: inline-block; padding: 12px 15px;
-          border-radius: 18px; background: rgba(255,255,255,0.18);
-          backdrop-filter: blur(10px); font-size: 14px; color: #fff;">
-          <span style="opacity: 0.6;">${window.chatbotConfig.name} is typing</span>
-          <span class="typing-dots" style="
-            display: inline-block; width: 20px; height: 20px; margin-left: 8px;
-            background: currentColor; border-radius: 50%; opacity: 0.4;
-            animation: typing 1.4s infinite ease-in-out;">
-          </span>
-          <style>
-            @keyframes typing {
-              0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-              30% { transform: translateY(-10px); opacity: 1; }
-            }
-          </style>
-        </span>
-      `;
-    } else {
-      msg.innerHTML = `
-        <span style="
-          display: inline-block; padding: 12px 15px;
-          border-radius: 18px; max-width: 85%;
-          background: ${sender === "bot" ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.30)"};
-          backdrop-filter: blur(10px); font-size: 14px; color: #fff;
-          line-height: 1.4; word-wrap: break-word;">
-          ${text.replace(/\n/g, '<br>')}
-        </span>
-      `;
-    }
-
-    messages().appendChild(msg);
-    messages().scrollTop = messages().scrollHeight;
-    return msg;
-  }
-
-  /* -----------------------------------------------------
-     CUSTOMIZABLE AI BRAIN
-  ----------------------------------------------------- */
-  const quickActions = {
-    "project": "#portfolio-section",
-    "projects": "#portfolio-section",
-    "skill": "#skills-section", 
-    "skills": "#skills-section",
-    "about": "#about-section",
-    "education": "#services-section",
-    "contact": "#contact-section",
-    "journal": "#journal-section",
-    "cv": "https://drive.google.com/file/d/1kx5LuSpNdTrBWbBXhlfviEqRTz996hvt/view?usp=sharing",
-    "resume": "https://drive.google.com/file/d/1kx5LuSpNdTrBWbBXhlfviEqRTz996hvt/view?usp=sharing",
-    "linkedin": "https://www.linkedin.com/in/swetha-a-s-47555323b/"
-  };
-
-  function getAIResponse(text) {
-    const msg = text.toLowerCase().trim();
-    window.chatState.conversationHistory.push(msg);
-
-    // Greetings
-    if (['hi','hello','hey','hola','yo'].some(g => msg.includes(g))) {
-      return window.chatbotConfig.responses.greetings[Math.floor(Math.random() * window.chatbotConfig.responses.greetings.length)];
-    }
-
-    // Quick actions
-    for (const [intent, section] of Object.entries(quickActions)) {
-      if (msg.includes(intent)) {
-        if (section.startsWith('#')) {
-          return `${window.chatbotConfig.responses[intent]?.[0] || `Navigate to ${intent.replace('-', ' ')}`} 
-          
-          <button onclick="scrollToSection('${section}')" style="color:#4ade80;background:none;border:none;cursor:pointer;font-size:16px;">📍 Go to ${intent}</button>`;
-        } else {
-          return `<a href="${section}" target="_blank" style="color:#4ade80;">📄 View ${intent}</a>`;
-        }
-      }
-    }
-
-    // Keyword matching
-    if (msg.includes('project') || msg.includes('work')) return window.chatbotConfig.responses.projects[Math.floor(Math.random() * window.chatbotConfig.responses.projects.length)];
-    if (msg.includes('skill') || msg.includes('tech')) return window.chatbotConfig.responses.skills[Math.floor(Math.random() * window.chatbotConfig.responses.skills.length)];
-    if (msg.includes('education') || msg.includes('college')) return window.chatbotConfig.responses.education[Math.floor(Math.random() * window.chatbotConfig.responses.education.length)];
-    if (msg.includes('certificate') || msg.includes('course')) return window.chatbotConfig.responses.certificates[Math.floor(Math.random() * window.chatbotConfig.responses.certificates.length)];
-    if (msg.includes('contact') || msg.includes('email') || msg.includes('phone')) return window.chatbotConfig.responses.contact[Math.floor(Math.random() * window.chatbotConfig.responses.contact.length)];
-    if (msg.includes('link') || msg.includes('github')) return window.chatbotConfig.responses.links[Math.floor(Math.random() * window.chatbotConfig.responses.links.length)];
-
-    // Personality
-    if (msg.includes('how are you')) return "I'm doing fantastic! 😊 Just excited to show you around Swetha's amazing work. What interests you most?";
-    if (msg.includes('name')) return `I'm ${window.chatbotConfig.name}'s AI assistant! 👋 Here to help you explore the portfolio.`;
-    if (msg.includes('thank')) return "You're welcome! 😄 Happy to help. Anything else I can show you?";
-
-    // ✨ CUSTOMIZABLE FALLBACK - NO MORE LISTS!
-    return window.chatbotConfig.fallbackResponses[Math.floor(Math.random() * window.chatbotConfig.fallbackResponses.length)];
-  }
-
-  /* -----------------------------------------------------
-     SCROLL & SEND FUNCTIONS
-  ----------------------------------------------------- */
-  window.scrollToSection = function (sectionId) {
-    document.querySelector(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    addMessage("bot", `Scrolling to ${sectionId.replace("#", "")} section... ✨`);
-    setTimeout(closeChat, 1200);
-  };
-
-  const input = document.getElementById("chat-input");
-  const sendBtn = document.getElementById("chat-send");
-
-  async function sendMessage() {
-    const text = input.value.trim();
-    if (!text || window.chatState.isTyping) return;
-
-    addMessage("user", text);
-    input.value = "";
-    input.focus();
-
-    window.chatState.isTyping = true;
-    const typingMsg = addMessage("bot", "", true);
-
-    await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 1200));
-
-    typingMsg.remove();
-    const response = getAIResponse(text);
-    addMessage("bot", response);
-    window.chatState.isTyping = false;
-  }
-
-  /* -----------------------------------------------------
-     EVENTS
-  ----------------------------------------------------- */
-  chatToggle.onclick = toggleChat;
-  sendBtn.onclick = sendMessage;
-  
-  input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  });
-
-  input.addEventListener("input", function() {
-    this.style.height = 'auto';
-    this.style.height = this.scrollHeight + 'px';
-  });
-
-  /* -----------------------------------------------------
-     WELCOME MESSAGE
-  ----------------------------------------------------- */
-  setTimeout(() => {
-    addMessage("bot", window.chatbotConfig.welcomeMessages[Math.floor(Math.random() * window.chatbotConfig.welcomeMessages.length)]);
-  }, 1000);
-
-  setTimeout(toggleChat, 4000);
+  // setTimeout(toggleChat, 4000);
 })();
 </script>
 
@@ -904,7 +686,11 @@
             </div>
             <div class="col-lg-4 pr-lg-5">
               <h3 class="mb-4 heading-h3"><span class="gsap-reveal">We can make it together</span></h3>
-              <p class="lead gsap-reveal">combining my passion for UI/UX design and web/app development with your vision for innovation. I’m eager to  <a href="https://www.figma.com/files/team/1232974932050273760/recents-and-sharing/recently-viewed?fuid=1104137572933381493">collaborate and bring creative</a> ,tech-driven solutions to life. </p>
+              <!-- <p class="lead gsap-reveal">combining my passion for UI/UX design and web/app development with your vision for innovation. I’m eager to  <a href="https://www.figma.com/files/team/1232974932050273760/recents-and-sharing/recently-viewed?fuid=1104137572933381493">collaborate and bring creative</a> ,tech-driven solutions to life. </p> -->
+               <p class="lead gsap-reveal">
+  I combine my skills in web and app development with AI-driven solutions, backed by a strong focus on UI/UX design. I enjoy creating intuitive, user-centered digital experiences and bringing <a href="https://www.figma.com/files/team/1232974932050273760/recents-and-sharing/recently-viewed?fuid=1104137572933381493">creative, tech-driven solutions</a> to life.
+</p>
+
               <p class="mb-4 gsap-reveal">I’m a fresher who’s adaptable, a quick learner, and always eager to explore new technologies. I'm excited to contribute and grow in a dynamic tech environment..</p>
               <p class="gsap-reveal"><a href="https://drive.google.com/file/d/1kx5LuSpNdTrBWbBXhlfviEqRTz996hvt/view?usp=sharing" class="btn btn-outline-pill btn-custom-light">Download my CV</a></p>
             </div>
@@ -954,6 +740,63 @@
           </div>
         </div>
       </div>
+
+
+<div class="unslate_co--section" id="experience-section">
+  <div class="container">
+
+    <!-- SECTION HEADING -->
+    <div class="section-heading-wrap text-center mb-5">
+      <h2 class="heading-h2 text-center divider">
+        <span class="gsap-reveal">My Experience</span>
+      </h2>
+      <span class="gsap-reveal">
+        <img src="images/divider.png" alt="divider" width="76">
+      </span>
+    </div>
+
+    <!-- EXPERIENCE WRAPPER -->
+    <div class="experience-wrapper">
+
+      <!-- LEFT SIDE -->
+      <div class="experience-left">
+        <div class="timeline-line"></div>
+
+        <div class="company active" data-index="0">
+          <span class="dot"></span>
+          <span class="name">Incede Technology</span>
+              <!-- <span class="role">Software Engineer</span> -->
+
+        </div>
+
+        <div class="company" data-index="1">
+          <span class="dot"></span>
+          <span class="name">Keltron</span>
+              <!-- <span class="role">Internship</span> -->
+
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="experience-right">
+        <div class="exp active">
+          <p>
+       Incede is founded by experienced banking technology professionals with strong expertise in BFSI product engineering. The company focuses on delivering innovative, scalable, and high-quality software solutions for the financial services industry.
+       <!-- Website: https://incedetech.ai/ -->
+          </p>
+        </div>
+
+        <div class="exp">
+          <p>
+KELTRON Component Complex Ltd (KCCL) was established on 8th October 1974 in collaboration with M/s. Sprague Electromag, Belgium. It began commercial production in 1978 and is now the largest manufacturer of aluminium electrolytic capacitors in India.        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 
 
 
