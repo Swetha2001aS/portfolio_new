@@ -101,7 +101,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let index = 0;
   let scrolling = false;
   let enableScroll = false;
+companies.forEach(company => {
+    company.addEventListener("click", () => {
+      // Mobile only
+      if (window.innerWidth > 992) return;
 
+      const index = company.getAttribute("data-index");
+
+      companies.forEach(c => c.classList.remove("active"));
+      experiences.forEach(e => e.classList.remove("active"));
+
+      company.classList.add("active");
+      document.querySelector(`.exp[data-index="${index}"]`).classList.add("active");
+
+      // Smooth scroll to content (nice UX)
+      document.querySelector(".experience-right")
+        .scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
   // Set first active (Incede)
   companies.forEach((c, i) => c.classList.toggle("active", i === index));
   experiences.forEach((e, i) => e.classList.toggle("active", i === index));
@@ -620,16 +637,18 @@ document.addEventListener("DOMContentLoaded", () => {
    
 
               <div class="item web illustration col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                <a href="images/photo/nbfc.png" class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery" data-caption="Render Packaging">
+                                <a href="portfolio-single-2.html" class="portfolio-item ajax-load-page item-portrait isotope-item gsap-reveal-img" data-id="3">
+
+                <!-- <a href="images/photo/i2i.png" class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery" data-caption="Render Packaging"> -->
                     <div class="overlay">
-                      <span class="wrap-icon icon-photo2"></span>
+                      <span class="wrap-icon icon-link2"></span>
                       <div class="portfolio-item-content">
                        
-                         <h3>Incede</h3>
-          <p>NBFC, Web App</p>
+                         <h3>I2I - India to Ireland</h3>
+          <p> Web Application,incede Technologies</p>
                       </div>
                     </div>
-                    <img src="images/photo/nbfc2.png" class="lazyload  img-fluid" alt="Images" />
+                    <img src="images/photo/i2i.png" class="lazyload  img-fluid" alt="Images" />
                   </a>
               </div>
               <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
@@ -779,14 +798,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <!-- RIGHT SIDE -->
       <div class="experience-right">
-        <div class="exp active">
+        <div class="exp active" data-index="0">
           <p>
        Incede is founded by experienced banking technology professionals with strong expertise in BFSI product engineering. The company focuses on delivering innovative, scalable, and high-quality software solutions for the financial services industry.
        <!-- Website: https://incedetech.ai/ -->
           </p>
         </div>
 
-        <div class="exp">
+        <div class="exp" data-index="1">
           <p>
 KELTRON Component Complex Ltd (KCCL) was established on 8th October 1974 in collaboration with M/s. Sprague Electromag, Belgium. It began commercial production in 1978 and is now the largest manufacturer of aluminium electrolytic capacitors in India.        </div>
       </div>
